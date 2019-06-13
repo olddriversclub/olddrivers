@@ -23,6 +23,17 @@
         "start": "gatsby develop",
         "test": "npm run lint"
     },
+    "pre-commit": [
+      "precommit"
+    ],
+    "lint-staged": {
+      "**/*.less": "stylelint --syntax less",
+      "**/*.{js,jsx,less}": [
+        "prettier --write",
+        "git add"
+      ],
+      "**/*.{js,jsx}": "npm run lint-staged:js"
+    },
     "dependencies": {
         "@types/classnames": "^2.2.7",
         "@types/react-document-title": "^2.0.3",
