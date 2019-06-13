@@ -9,7 +9,7 @@ const himalaya = require('himalaya'); // Parse HTML into JSON
 
 // 获取用户的头像列表
 const getAvatarList = async filename => {
-  const sourcePath = 'https://github.com/ant-design/ant-design-pro-site/contributors/master';
+  const sourcePath = 'https://github.com/olddriversclub/olddrivers/contributors/master';
   const url = `${sourcePath}${filename}/list`;
   const html = await fetch(url).then(res => res.text());
   const ast = himalaya.parse(html)[0].children || [];
