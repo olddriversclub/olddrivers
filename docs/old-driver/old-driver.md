@@ -1,7 +1,7 @@
 ---
 order: 0
 title: 开始使用
-type: 入门
+type: 项目
 ---
 
 ## 写在前面

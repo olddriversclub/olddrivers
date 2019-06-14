@@ -71,7 +71,7 @@ function Page2({ location }) {
                 id="app.home.needhelp"
                 values={{
                   docs: (
-                    <Link to={utils.getLocalizedPathname('/docs/getting-started', isZhCN)}>
+                    <Link to={utils.getLocalizedPathname('/docs/old-driver', isZhCN)}>
                       <FormattedMessage id="app.home.docs" />
                     </Link>
                   ),

@@ -203,10 +203,10 @@ class Header extends React.Component<HeaderProps, HeaderState> {
           <Link to="/">首页</Link>
         </Menu.Item>
         <Menu.Item key="docs">
-          <Link to="/docs/getting-started">会所</Link>
+          <Link to="/docs/old-driver">会所</Link>
         </Menu.Item>
         <Menu.Item key="blog">
-          <Link to="/blog/change-theme">入会</Link>
+          <Link to="/blog/join-us">入会</Link>
         </Menu.Item>
       </Menu>,
     ];

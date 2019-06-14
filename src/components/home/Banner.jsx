@@ -28,10 +28,10 @@ function Banner(props) {
         <h1 key="h1">Old Drivers</h1>
         <p key="content">老司机愉快的平台</p>
         <div key="button" className="button-wrapper">
-          <Link to="/docs/getting-started">
+          <Link to="/docs/old-driver">
             <Button type="primary">会所</Button>
           </Link>
-          <Link to="/docs/getting-started">
+          <Link to="/docs/old-driver">
             <Button style={{ margin: '0 16px' }} type="primary" ghost>
               入会
             </Button>

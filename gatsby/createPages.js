@@ -49,7 +49,6 @@ module.exports = async ({ graphql, actions }) => {
         if (underScoreCasePath !== path) {
           redirects[underScoreCasePath] = path;
         }
-
         return createPage({
           path,
           component: template,
@@ -76,13 +75,13 @@ module.exports = async ({ graphql, actions }) => {
   createRedirect({
     fromPath: '/docs/',
     redirectInBrowser: true,
-    toPath: '/docs/getting-started',
+    toPath: '/docs/old-driver',
   });
   // 文档重定向
   createRedirect({
     fromPath: '/blog/',
     redirectInBrowser: true,
-    toPath: '/blog/change-theme',
+    toPath: '/blog/join-us',
   });
   Object.keys(redirects).map(path =>
     createRedirect({
