@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: `https://Olddrivers`,
   },
   plugins: [
+    `gatsby-plugin-sharp`,
     {
       resolve: 'gatsby-plugin-less',
       options: {
@@ -40,18 +41,40 @@ module.exports = {
         path: `${__dirname}/blog/`,
       },
     },
+    // {
+    //   resolve: 'gatsby-transformer-remark-antd',
+    //   options: {
+    //     plugins: [
+    //       'gatsby-remark-header-custom-ids',
+    //       'gatsby-remark-img-warpper-p',
+    //       {
+    //         resolve: `gatsby-remark-prismjs`,
+    //         options: {
+    //           noInlineHighlight: true,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
     {
-      resolve: 'gatsby-transformer-remark-antd',
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          'gatsby-remark-header-custom-ids',
-          'gatsby-remark-img-warpper-p',
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: `gatsby-remark-images`,
             options: {
-              noInlineHighlight: true,
+              maxWidth: 590,
             },
           },
+          // {
+          //   resolve: `gatsby-remark-responsive-iframe`,
+          //   options: {
+          //     wrapperStyle: `margin-bottom: 1.0725rem`,
+          //   },
+          // },
+          `gatsby-remark-prismjs`,
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
         ],
       },
     },

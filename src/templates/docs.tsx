@@ -15,10 +15,7 @@ interface IMarkDownFields {
   }>;
 }
 export interface IFrontmatterData extends IMarkDownFields {
-  title: {
-    'zh-CN': string;
-    'en-US': string;
-  };
+  title: string;
   toc: string | boolean;
   order: number;
   type: string;
@@ -32,10 +29,7 @@ export interface IFrontmatterData extends IMarkDownFields {
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export interface IGraphqlFrontmatterData extends Omit<IFrontmatterData, 'title'> {
-  title: {
-    zh_CN: string;
-    en_US: string;
-  };
+  title: string;
 }
 
 export interface IMarkdownRemarkData {
@@ -106,10 +100,7 @@ export const pageQuery = graphql`
       html
       tableOfContents(maxDepth: 3)
       frontmatter {
-        title {
-          zh_CN
-          en_US
-        }
+        title
         order
         type
       }
@@ -131,10 +122,7 @@ export const pageQuery = graphql`
       edges {
         node {
           frontmatter {
-            title {
-              zh_CN
-              en_US
-            }
+            title
             order
             type
           }
