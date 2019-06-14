@@ -42,6 +42,7 @@ module.exports = async ({ graphql, actions }) => {
 
   const edges = allMarkdown.data.allMarkdownRemark.edges;
   edges.forEach(edge => {
+    console.log(edge.node.fields);
     const { slug, underScoreCasePath } = edge.node.fields;
     if (slug.includes('docs/') || slug.includes('/blog')) {
       const template = docsTemplate;

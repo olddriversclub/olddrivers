@@ -21,11 +21,7 @@ class Footer extends React.Component<{
     }
 
     window.location.href =
-      currentProtocol +
-      currentHref.replace(
-        window.location.pathname,
-        utils.getLocalizedPathname(pathname, !utils.isZhCN(pathname))
-      );
+      currentProtocol + currentHref.replace(window.location.pathname, pathname);
   };
 
   render() {

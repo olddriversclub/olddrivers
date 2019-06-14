@@ -97,7 +97,6 @@
         "gatsby-remark-embed-snippet": "^3.0.0",
         "gatsby-remark-prismjs": "^3.2.11",
         "gatsby-source-filesystem": "^2.0.0",
-        "gatsby-transformer-remark-antd": "^1.0.0",
         "gh-pages": "^1.0.0",
         "github-slugger": "^1.2.1",
         "js-beautify": "^1.7.5",

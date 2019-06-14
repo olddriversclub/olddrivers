@@ -5,10 +5,11 @@ import QueueAnim from 'rc-queue-anim';
 import { Link } from 'gatsby';
 import { Button } from 'antd';
 import { FormattedMessage } from 'react-intl';
-import * as utils from '../utils';
+// import * as utils from '../utils';
 
+// eslint-disable-next-line no-unused-vars
 function Page2({ location }) {
-  const isZhCN = utils.isZhCN(location.pathname);
+  // const isZhCN = utils.isZhCN(location.pathname);
   return (
     <div className="home-page page2">
       <div className="home-page-wrapper">
@@ -71,12 +72,12 @@ function Page2({ location }) {
                 id="app.home.needhelp"
                 values={{
                   docs: (
-                    <Link to={utils.getLocalizedPathname('/docs/old-driver', isZhCN)}>
+                    <Link to="/docs/old-driver">
                       <FormattedMessage id="app.home.docs" />
                     </Link>
                   ),
                   faq: (
-                    <Link to={utils.getLocalizedPathname('/docs/faq', isZhCN)}>
+                    <Link to="/docs/faq">
                       <FormattedMessage id="app.home.faq" />
                     </Link>
                   ),

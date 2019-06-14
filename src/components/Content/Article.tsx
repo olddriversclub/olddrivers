@@ -60,7 +60,7 @@ export default class Article extends React.PureComponent<ArticleProps> {
       };
     };
     return (
-      <DocumentTitle title={`${title[locale] || title} - Ant Design`}>
+      <DocumentTitle title={`${title} - Ant Design`}>
         <>
           <article
             className="markdown"
@@ -69,7 +69,7 @@ export default class Article extends React.PureComponent<ArticleProps> {
             }}
           >
             <h1>
-              {title[locale] || title}
+              {title}
               {!subtitle || locale === 'en-US' ? null : (
                 <span className="subtitle">{subtitle}</span>
               )}

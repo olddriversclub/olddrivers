@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import WrapperLayout from '../components/layout';
 import MainContent from '../components/Content/MainContent';
-import { transformerFrontmatter } from '../components/utils';
 
 interface IMarkDownFields {
   path: string;
@@ -62,7 +61,9 @@ export default function Template({
   const { frontmatter, fields, html, tableOfContents } = markdownRemark;
   const { edges } = allMarkdownRemark;
   const menuList = edges.map(({ node }) => {
-    const newFrontmatter = transformerFrontmatter(node.frontmatter);
+    const newFrontmatter = {
+      ...node.frontmatter,
+    };
     return {
       slug: node.fields.slug,
       meta: {
@@ -80,7 +81,7 @@ export default function Template({
         {...rest}
         localizedPageData={{
           meta: {
-            ...transformerFrontmatter(frontmatter),
+            ...frontmatter,
             ...fields,
             filename: fields.slug,
             path: fields.path,

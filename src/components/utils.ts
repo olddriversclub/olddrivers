@@ -33,24 +33,24 @@ export function isZhCN(pathname: string) {
  * else
  *  return "avatar-list-cn"
  */
-export function getLocalizedPathname(path: string, zhCN: boolean) {
-  let pathname = path.startsWith('/') ? path : `/${path}`;
-  pathname = pathname.replace('-cn', '');
-  if (pathname === '/' || pathname === '/index') {
-    if (zhCN) {
-      return '/index-cn';
-    }
-    return '/';
-  }
+// export function getLocalizedPathname(path: string, zhCN: boolean) {
+//   let pathname = path.startsWith('/') ? path : `/${path}`;
+//   pathname = pathname.replace('-cn', '');
+//   if (pathname === '/' || pathname === '/index') {
+//     if (zhCN) {
+//       return '/index-cn';
+//     }
+//     return '/';
+//   }
 
-  if (!zhCN) {
-    return `${pathname}`;
-  }
-  if (pathname.endsWith('/')) {
-    return `${pathname.substring(0, pathname.length - 1)}-cn`;
-  }
-  return `${pathname}-cn`;
-}
+//   if (!zhCN) {
+//     return `${pathname}`;
+//   }
+//   if (pathname.endsWith('/')) {
+//     return `${pathname.substring(0, pathname.length - 1)}-cn`;
+//   }
+//   return `${pathname}-cn`;
+// }
 
 export function getMenuItems(
   moduleData: {
@@ -115,13 +115,10 @@ export function isLocalStorageNameSupported() {
   }
 }
 
-export const transformerFrontmatter = (frontmatter: IGraphqlFrontmatterData): IFrontmatterData => {
-  const { title } = frontmatter;
-  return {
-    ...frontmatter,
-    title: {
-      'zh-CN': title.zh_CN,
-      'en-US': title.en_US,
-    },
-  };
-};
+// export const transformerFrontmatter = (frontmatter: IGraphqlFrontmatterData): IFrontmatterData => {
+//   const { title } = frontmatter;
+//   return {
+//     ...frontmatter,
+//     title,
+//   };
+// };

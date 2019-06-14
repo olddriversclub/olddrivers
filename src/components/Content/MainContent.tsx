@@ -6,8 +6,8 @@ import { Link } from 'gatsby';
 import { Badge, Row, Col, Menu, Icon } from 'antd';
 import classNames from 'classnames';
 import MobileMenu from 'rc-drawer-menu';
-import Article from './Article';
-import { isZhCN, getMenuItems, MenuDataItem, IMenuData } from '../utils';
+// import Article from './Article';
+import { getMenuItems, MenuDataItem, IMenuData } from '../utils';
 import { IFrontmatterData } from '../../templates/docs';
 
 const { SubMenu } = Menu;
@@ -39,15 +39,11 @@ function getActiveMenuItem(props: MainContentProps) {
 
 function getModuleDataWithProps(props: MainContentProps) {
   const moduleData = props.menuList;
-  const excludedSuffix = isZhCN(props.location.pathname) ? 'zh-CN' : 'en-US';
   return moduleData.filter(({ filename }) => {
     if (!filename) {
       return false;
     }
-    if (!filename.includes('zh-CN') && !filename.includes('en-US')) {
-      return true;
-    }
-    return filename.includes(excludedSuffix);
+    return true;
   });
 }
 
@@ -114,38 +110,21 @@ export default class MainContent extends React.PureComponent<MainContentProps, M
     return [];
   }
 
-  convertFilename = (filename: string) => {
-    const {
-      location: { pathname },
-    } = this.props;
-    if (isZhCN(pathname) && !filename.includes('-cn')) {
-      return `${filename}-cn`;
-    }
-    return filename;
-  };
-
   generateMenuItem = ({ before = null, after = null }, item: MenuDataItem) => {
     if (!item.title) {
       return;
     }
-    const {
-      intl: { locale },
-    } = this.context as {
-      intl: {
-        locale: 'zh-CN' | 'en-US';
-      };
-    };
     const text = [
-      <span key="english">{item.title[locale] || item.title}</span>,
+      <span key="english">{item.title}</span>,
       <span className="chinese" key="chinese">
-        {locale === 'zh-CN' && item.subtitle}
+        {item.subtitle}
       </span>,
     ];
 
     const disabled = item.disabled;
 
     const child = !item.link ? (
-      <Link to={this.convertFilename(item.filename)}>
+      <Link to={item.filename}>
         {before}
         {text}
         {after}
@@ -163,20 +142,13 @@ export default class MainContent extends React.PureComponent<MainContentProps, M
       </a>
     );
     return (
-      <Menu.Item key={this.convertFilename(item.filename)} disabled={disabled}>
+      <Menu.Item key={item.filename} disabled={disabled}>
         {item.important ? <Badge dot={item.important}>{child}</Badge> : child}
       </Menu.Item>
     );
   };
 
   generateSubMenuItems = (obj?: IMenuData, footerNavIcons = {}) => {
-    const {
-      intl: { locale },
-    } = this.context as {
-      intl: {
-        locale: 'zh-CN' | 'en-US';
-      };
-    };
     if (!obj) return [];
     const topLevel = ((obj.topLevel as MenuDataItem[]) || []).map(
       this.generateMenuItem.bind(this, footerNavIcons)
@@ -189,7 +161,7 @@ export default class MainContent extends React.PureComponent<MainContentProps, M
             if ('order' in a && 'order' in b) {
               return a.order - b.order;
             }
-            return a.title[locale].charCodeAt(0) - b.title[locale].charCodeAt(0);
+            return a.title.charCodeAt(0) - b.title.charCodeAt(0);
           })
           .map(this.generateMenuItem.bind(this, footerNavIcons));
         return (
@@ -278,7 +250,7 @@ export default class MainContent extends React.PureComponent<MainContentProps, M
           )}
           <Col xxl={20} xl={19} lg={18} md={24} sm={24} xs={24}>
             <div className={mainContainerClass}>
-              <Article {...this.props} content={localizedPageData} />
+              {/* <Article {...this.props} content={localizedPageData} /> */}
             </div>
           </Col>
         </Row>
