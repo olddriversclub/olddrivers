@@ -3,9 +3,7 @@ import { addLocaleData, IntlProvider } from 'react-intl';
 import { LocaleProvider } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 import Media from 'react-media';
-import enLocale from '../../locale/en-US';
 import cnLocale from '../../locale/zh-CN';
-import * as utils from '../utils';
 import '../../static/style';
 import Header from './Header';
 import Footer from './Footer';
@@ -28,8 +26,7 @@ interface LayoutState {
 export class Layout extends React.Component<LayoutProps, LayoutState> {
   constructor(props: LayoutProps) {
     super(props);
-    const { pathname } = props.location;
-    const appLocale = utils.isZhCN(pathname) ? cnLocale : enLocale;
+    const appLocale = cnLocale;
     addLocaleData(appLocale.data);
     this.state = {
       appLocale,
@@ -38,15 +35,11 @@ export class Layout extends React.Component<LayoutProps, LayoutState> {
 
   render() {
     const { children, location, ...restProps } = this.props;
-    const { pathname } = location;
     const { appLocale } = this.state;
     return (
       <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
         <LocaleProvider locale={enUS}>
-          <div
-            className={`page-wrapper ${(pathname === '/' || pathname === 'index-cn') &&
-              'index-page-wrapper'}`}
-          >
+          <div className="page-wrapper">
             <Header {...restProps} location={location} />
             {React.cloneElement(children, {
               ...children.props,

@@ -166,14 +166,6 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     window.location.href =
       currentProtocol + currentHref.replace(window.location.pathname, pathname);
   };
-  onVersionChange = (value: string) => {
-    if (value === 'v1') {
-      window.open('https://v1.pro.ant.design/');
-    }
-    if (value === 'v2') {
-      window.open('https://v2-pro.ant.design/');
-    }
-  };
   render() {
     const { menuMode, menuVisible } = this.state;
     const { location, intl } = this.props;
@@ -242,16 +234,11 @@ class Header extends React.Component<HeaderProps, HeaderState> {
             </div>
             <div className="header-meta">
               <div className="right-header">
-                <div id="lang">
+                {/* <div id="lang">
                   <Button onClick={this.handleLangChange} size="small">
                     <FormattedMessage id="app.header.lang" />
                   </Button>
-                </div>
-                {/* <Select size="small" onChange={this.onVersionChange} value="stable">
-                  <Option value="v1">v1</Option>
-                  <Option value="v2">v2</Option>
-                  <Option value="stable">v4</Option>
-                </Select> */}
+                </div> */}
               </div>
               {menuMode === 'horizontal' ? <div id="menu">{menu}</div> : null}
             </div>
