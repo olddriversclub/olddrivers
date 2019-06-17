@@ -18,7 +18,7 @@ export default function HTML(props) {
         <script src="https://gw.alipayobjects.com/os/lib/bizcharts/3.4.3/umd/BizCharts.min.js" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `console.log(123)`,
+            __html: ``,
           }}
         />
         {props.headComponents}

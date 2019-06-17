@@ -4,8 +4,30 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import { Link } from 'gatsby';
 import * as utils from '../utils';
 import { Row, Col, Icon, Select, Input, Menu, Button, Modal, Popover } from 'antd';
+import { StaticQuery, graphql } from 'gatsby';
 
-const { Option } = Select;
+const bioQuery = graphql`
+  query BioQuery {
+    avatar: file(absolutePath: { regex: "/logo.jpg/" }) {
+      childImageSharp {
+        fixed {
+          src
+        }
+      }
+    }
+  }
+`;
+function getLogo() {
+  return (
+    <StaticQuery
+      query={bioQuery}
+      render={data => {
+        const { src } = data.avatar.childImageSharp.fixed;
+        return <img src={src} alt="logo" />;
+      }}
+    />
+  );
+}
 
 const key = 'antd-pro@2.0.0-notification-sent';
 
@@ -217,7 +239,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         <Row>
           <Col xxl={4} xl={5} lg={8} md={8} sm={24} xs={24}>
             <Link id="logo" to="/">
-              <img src="../../images/logo.jpg" alt="logo" />
+              {getLogo()}
               <span>Old Drivers</span>
             </Link>
           </Col>
