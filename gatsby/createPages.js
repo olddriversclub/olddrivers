@@ -23,8 +23,6 @@ module.exports = async ({ graphql, actions }) => {
             node {
               fields {
                 slug
-                underScoreCasePath
-                path
               }
             }
           }
@@ -35,28 +33,23 @@ module.exports = async ({ graphql, actions }) => {
 
   if (allMarkdown.errors) {
     console.error(allMarkdown.errors);
-
     throw Error(allMarkdown.errors);
   }
-  const redirects = {};
 
   const edges = allMarkdown.data.allMarkdownRemark.edges;
   edges.forEach(edge => {
-    console.log(edge.node.fields);
-    const { slug, underScoreCasePath } = edge.node.fields;
-    if (slug.includes('docs/') || slug.includes('/blog')) {
+    const { slug } = edge.node.fields;
+    // 只对特定文件夹下的md生效
+    if (slug.includes('/docs') || slug.includes('/blog')) {
       const template = docsTemplate;
       const createArticlePage = path => {
-        if (underScoreCasePath !== path) {
-          redirects[underScoreCasePath] = path;
-        }
         return createPage({
           path,
           component: template,
           context: {
             slug,
             // if is docs page
-            type: slug.includes('docs/') ? '/docs/' : '/blog/',
+            type: slug.includes('/docs') ? '/docs/' : '/blog/',
           },
         });
       };
@@ -84,11 +77,4 @@ module.exports = async ({ graphql, actions }) => {
     redirectInBrowser: true,
     toPath: '/blog/join-us',
   });
-  Object.keys(redirects).map(path =>
-    createRedirect({
-      fromPath: path,
-      redirectInBrowser: true,
-      toPath: redirects[path],
-    })
-  );
 };

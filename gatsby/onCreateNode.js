@@ -59,18 +59,13 @@ module.exports = exports.onCreateNode = async ({ node, actions, getNode }) => {
       });
 
       if (!slug) {
-        slug = `${sourceInstanceName}/${relativePath.replace('.zh-CN.md', '').replace('.md', '')}`;
+        slug = `${sourceInstanceName}/${relativePath}`;
       }
 
       createNodeField({
         node,
         name: 'slug',
         value: getKebabCase(slug.replace('/index', '')),
-      });
-      createNodeField({
-        node,
-        name: 'underScoreCasePath',
-        value: slug.replace('/index', ''),
       });
 
       createNodeField({
