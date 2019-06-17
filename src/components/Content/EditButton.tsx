@@ -8,7 +8,7 @@ const EditButton: React.SFC<{
 }> = ({
   title,
   filename,
-  sourcePath = 'https://github.com/ant-design/ant-design-pro-site/edit/master',
+  sourcePath = 'https://github.com/olddriversclub/olddrivers/edit/master',
 }) => {
   return (
     <Tooltip title={title}>

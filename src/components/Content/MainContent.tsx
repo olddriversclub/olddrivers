@@ -6,7 +6,7 @@ import { Link } from 'gatsby';
 import { Badge, Row, Col, Menu, Icon } from 'antd';
 import classNames from 'classnames';
 import MobileMenu from 'rc-drawer-menu';
-// import Article from './Article';
+import Article from './Article';
 import { getMenuItems, MenuDataItem, IMenuData } from '../utils';
 import { IFrontmatterData } from '../../templates/docs';
 
@@ -250,7 +250,7 @@ export default class MainContent extends React.PureComponent<MainContentProps, M
           )}
           <Col xxl={20} xl={19} lg={18} md={24} sm={24} xs={24}>
             <div className={mainContainerClass}>
-              {/* <Article {...this.props} content={localizedPageData} /> */}
+              <Article {...this.props} content={localizedPageData} />
             </div>
           </Col>
         </Row>
