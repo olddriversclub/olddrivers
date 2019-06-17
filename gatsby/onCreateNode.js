@@ -33,13 +33,13 @@ const getAvatarList = async filename => {
   return data;
 };
 
-const getKebabCase = str => {
-  return str
-    .replace(/[A-Z]/g, letter => {
-      return `-${letter.toLowerCase()}`;
-    })
-    .replace(/\/-/g, '/');
-};
+// const getKebabCase = str => {
+//   return str
+//     .replace(/[A-Z]/g, letter => {
+//       return `-${letter.toLowerCase()}`;
+//     })
+//     .replace(/\/-/g, '/');
+// };
 // Add custom fields to MarkdownRemark nodes.
 module.exports = exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
@@ -52,6 +52,7 @@ module.exports = exports.onCreateNode = async ({ node, actions, getNode }) => {
       const stats = fs.statSync(filePath);
       const mtime = new Date(stats.mtime).getTime();
       const mdFilePath = path.join(sourceInstanceName, relativePath);
+
       createNodeField({
         node,
         name: `modifiedTime`,
@@ -59,21 +60,24 @@ module.exports = exports.onCreateNode = async ({ node, actions, getNode }) => {
       });
 
       if (!slug) {
-        slug = `${sourceInstanceName}/${relativePath}`;
+        slug = `/${sourceInstanceName}/${relativePath.replace('.md', '')}`;
       }
-
+      const t = slug.split('/');
+      // eslint-disable-next-line no-plusplus
+      t.length--;
+      slug = t.join('/');
       createNodeField({
         node,
         name: 'slug',
-        value: getKebabCase(slug.replace('/index', '')),
+        value: slug,
       });
 
       createNodeField({
         node,
         name: 'path',
-        value: mdFilePath,
+        value: `/${mdFilePath}`,
       });
-      const html = await getAvatarList(mdFilePath);
+      const html = await getAvatarList(`/${mdFilePath}`);
       createNodeField({
         node,
         name: 'avatarList',
